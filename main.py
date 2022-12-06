@@ -20,8 +20,12 @@ class ShoppingCart:
         self.list_of_quantities = []
 
     def add_to_list(self, prod, quantity):
-        self.list_of_products.append(prod)
-        self.list_of_quantities.append(quantity)
+        if prod in self.list_of_products:
+            elem = self.list_of_products.index(prod)
+            self.list_of_quantities[elem] += quantity
+        else:
+            self.list_of_products.append(prod)
+            self.list_of_quantities.append(quantity)
 
     def total_price_cart(self):
         total = 0
