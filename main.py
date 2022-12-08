@@ -20,18 +20,14 @@ class ShoppingCart:
         self.list_of_quantities = []
 
     def add_to_list(self, prod, quantity):
-        if prod in self.list_of_products:
-            elem = self.list_of_products.index(prod)
-            self.list_of_quantities[elem] += quantity
-        else:
-            self.list_of_products.append(prod)
-            self.list_of_quantities.append(quantity)
+        self.list_of_products.append(prod)
+        self.list_of_quantities.append(quantity)
 
     def total_price_cart(self):
         total = 0
         for prod, quantity in zip(self.list_of_products, self.list_of_quantities):
             total += prod.cost_calc(quantity)
-            return round(total, 2)
+        return round(total, 2)
 
 
 p1 = Product('beer', 35.2)
