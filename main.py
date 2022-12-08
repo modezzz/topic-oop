@@ -1,19 +1,40 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+class Product:
+    """Takes the name and price of products."""
 
-"""
-Challenge:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
 
-#. Implement ``Product`` class
-#. Each ``Product`` instance should implement properties:
-    * ``name`` - a product's name, like apple, cheese etc.
-    * ``price`` - a price for a single unit
-#. ``Product`` instance should have a behavior of calculating total
-   price for a specified quantity of goods
-#. Implement ``ShoppingCart`` class
-#. ``ShoppingCart`` instance should combine products instances and
-    corresponding purchased quantities.
-#. ``ShoppingCart`` instance should implement a method to calculate
-   the total price of entire cart.
+    def __repr__(self):
+        return f'Product "{self.name.capitalize()}" with price {self.price}'
 
-"""
+    def cost_calc(self, quantity):
+        return round(self.price * quantity, 2)
+
+
+class ShoppingCart:
+    """Takes the quantity, adds, displays and counts the total price of product."""
+
+    def __init__(self):
+        self.list_of_products = []
+        self.list_of_quantities = []
+
+    def add_to_list(self, prod, quantity):
+        self.list_of_products.append(prod)
+        self.list_of_quantities.append(quantity)
+
+    def total_price_cart(self):
+        total = 0
+        for prod, quantity in zip(self.list_of_products, self.list_of_quantities):
+            total += prod.cost_calc(quantity)
+        return round(total, 2)
+
+
+p1 = Product('beer', 35.2)
+p2 = Product('cheese', 163.15)
+
+cart = ShoppingCart()
+
+cart.add_to_list(p1, 3)
+cart.add_to_list(p2, 2)
+cart.total_price_cart()
