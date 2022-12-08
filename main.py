@@ -27,7 +27,7 @@ class ShoppingCart:
         total = 0
         for prod, quantity in zip(self.list_of_products, self.list_of_quantities):
             total += prod.cost_calc(quantity)
-            return round(total, 2)
+        return round(total, 2)
 
 
 p1 = Product('beer', 35.2)
