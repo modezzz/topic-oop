@@ -37,5 +37,4 @@ cart = ShoppingCart()
 
 cart.add_to_list(p1, 3)
 cart.add_to_list(p2, 2)
-
 cart.total_price_cart()
