@@ -5,7 +5,7 @@ class Product:
         self.price = price
 
     def __repr__(self) -> str:
-        return f'Product "{self.name.capitalize()}" with price {self.price}'
+        return f'Product "{self.name}" with price {self.price}'
 
     def __str__(self) -> str:
         return self.name
