@@ -14,6 +14,8 @@ class Product:
         return round(self.price * quantity, 2)
 
     def __eq__(self, other):
+        if not isinstance(other, Product):
+            return False
         return self.name == other.name and self.price == other.price
 
     def __float__(self):
@@ -27,10 +29,10 @@ class ShoppingCart:
         self.list_of_quantities = []
 
         if products is not None:
-            if type(products) == list:
+            if isinstance(products, list):
                 for prod in products:
                     self.add_to_list(prod, 1)
-            elif type(products) == Product:
+            elif isinstance(products, Product):
                 self.add_to_list(products, 1)
 
     def __repr__(self) -> str:
@@ -54,9 +56,9 @@ class ShoppingCart:
         return self.total_price_cart()
 
     def __add__(self, other):
-        if type(other) == Product:
+        if isinstance(other, Product):
             self.add_to_list(other, 1)
-        elif type(other) == ShoppingCart:
+        elif isinstance(other, ShoppingCart):
             new_cart = ShoppingCart()
             for prod, quantity in zip(self.list_of_products, self.list_of_quantities):
                 new_cart.add_to_list(prod, quantity)
